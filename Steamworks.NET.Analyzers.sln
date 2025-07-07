@@ -1,0 +1,43 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.14.36221.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Steamworks.NET.Analyzers", "Steamworks.NET.Analyzers\Steamworks.NET.Analyzers\Steamworks.NET.Analyzers.csproj", "{5991321D-D339-4C7F-B2BC-3FA420B90D9B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Steamworks.NET.Analyzers.CodeFixes", "Steamworks.NET.Analyzers\Steamworks.NET.Analyzers.CodeFixes\Steamworks.NET.Analyzers.CodeFixes.csproj", "{32A6E119-B564-4A92-B593-45C07E5CEC62}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Steamworks.NET.Analyzers.Package", "Steamworks.NET.Analyzers\Steamworks.NET.Analyzers.Package\Steamworks.NET.Analyzers.Package.csproj", "{E6983EBB-1D7E-446F-B499-56FBEF10BE85}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Steamworks.NET.Analyzers.Test", "Steamworks.NET.Analyzers\Steamworks.NET.Analyzers.Test\Steamworks.NET.Analyzers.Test.csproj", "{7EA847E3-6312-41AE-AEE2-66D2424A1D74}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{5991321D-D339-4C7F-B2BC-3FA420B90D9B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5991321D-D339-4C7F-B2BC-3FA420B90D9B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5991321D-D339-4C7F-B2BC-3FA420B90D9B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5991321D-D339-4C7F-B2BC-3FA420B90D9B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{32A6E119-B564-4A92-B593-45C07E5CEC62}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{32A6E119-B564-4A92-B593-45C07E5CEC62}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{32A6E119-B564-4A92-B593-45C07E5CEC62}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{32A6E119-B564-4A92-B593-45C07E5CEC62}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E6983EBB-1D7E-446F-B499-56FBEF10BE85}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E6983EBB-1D7E-446F-B499-56FBEF10BE85}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E6983EBB-1D7E-446F-B499-56FBEF10BE85}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E6983EBB-1D7E-446F-B499-56FBEF10BE85}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7EA847E3-6312-41AE-AEE2-66D2424A1D74}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7EA847E3-6312-41AE-AEE2-66D2424A1D74}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7EA847E3-6312-41AE-AEE2-66D2424A1D74}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7EA847E3-6312-41AE-AEE2-66D2424A1D74}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {5DB96E22-5E10-40B2-A384-0CD1C188F92A}
+	EndGlobalSection
+EndGlobal
