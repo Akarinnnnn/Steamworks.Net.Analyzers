@@ -68,8 +68,16 @@ namespace Steamworks.NET.Analyzers
 			context.EnableConcurrentExecution();
 
 			context.RegisterSyntaxNodeAction(AnalyzeSetMethodCallFor0001, SyntaxKind.Block);
+			context.RegisterSyntaxNodeAction(AnalyzeSteamInterfaceAccesses, SyntaxKind.SimpleMemberAccessExpression);
 			// context.RegisterSyntaxNodeAction(AnalyzeCreateMethodCallFor0001, SyntaxKind.Block);
 			// todo context.RegisterSyntaxNodeAction(AnalyzeBlockFor0002, SyntaxKind.Block);
+		}
+
+		private void AnalyzeSteamInterfaceAccesses(SyntaxNodeAnalysisContext context)
+		{
+			var memberAccessSyntax = (MemberAccessExpressionSyntax)context.Node;
+
+			// exclude Steamworks internal methods
 		}
 
 		private static void AnalyzeSetMethodCallFor0001(SyntaxNodeAnalysisContext context)
@@ -180,9 +188,28 @@ namespace Steamworks.NET.Analyzers
 					continue;
 				}
 
-				args.
+				// args.
 				AsyncAnalysisHelpers.MatchCallResult(context.SemanticModel.GetSymbolInfo(), (IMethodSymbol)context.SemanticModel.GetSymbolInfo(args.Parent, context.CancellationToken).Symbol);
 
+			}
+		}
+
+		private static bool CheckShouldExcludeFromBlockAnalysis(BlockSyntax block, SyntaxNodeAnalysisContext context)
+		{
+			// find owning method
+			SymbolInfo symbolInfo = context.SemanticModel.GetSymbolInfo(block);
+			if (symbolInfo.Symbol is ISymbol symbol)
+			{
+				if (symbol is not IMethodSymbol methodSymbol)
+					return false;
+
+				INamespaceSymbol checkingNamespace = methodSymbol.ContainingNamespace;
+
+				return checkingNamespace.Name == MetadataNames.SteamworksNamespace;
+			}
+			else
+			{
+				return true;
 			}
 		}
 	}

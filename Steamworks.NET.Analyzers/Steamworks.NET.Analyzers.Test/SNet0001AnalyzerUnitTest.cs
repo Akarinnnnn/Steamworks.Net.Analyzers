@@ -1,5 +1,8 @@
-﻿using System.Threading.Tasks;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System.Buffers;
+using System.IO;
+using System.Text;
+using System.Threading.Tasks;
 using VerifyCS = Steamworks.NET.Analyzers.Test.CSharpCodeFixVerifier<
     Steamworks.NET.Analyzers.SNetCallbacksAnalyzer,
     Steamworks.NET.Analyzers.SNet0001CodeFixProvider>;
@@ -13,23 +16,54 @@ namespace Steamworks.NET.Analyzers.Test
         [TestMethod]
         public async Task NotToFix()
         {
-            var test =
-				CommonSourceDef.AsyncCallDefiniations + """
+            const string testSource = """
+                namespace Steamworks
+                {
+                    static class Internal
+                    {
+                        void InternalMethod()
+                        {
+                            var test = new CallResult<AsyncCallResult>();
+                            var h = SteamAsyncTest.TestCallResult();
+                        test.Set(h, (a, b) => {});
+                        }
+                    }
+                }
+
                 using Steamworks;
 
                 class Main0
                 {
                     static void Main()
                     {
-                        CallResult<AsyncCallResult> test = new();
+                        CallResult<AsyncCallResult_t> testNot0001 = new();
                         var h = SteamAsyncTest.TestCallResult();
-                        test.Set(h, (a, b) => {});
+                        testNot0001.Set(h, (a, b) => {});
+
+                        CallResult<AsyncCallback_t> test0001 = new();
+                        test0002.
+
+                        Callback<AsyncCallback_t> testNot0002 = new 
+
+                        CallResult<AsyncCallResult> test0002 = new((r) => {});
                     }
+
+                    static CallRes TestProperty { get {} }
                 }
                 """;
 
-            await VerifyCS.VerifyAnalyzerAsync(test);
+            await VerifyCS.VerifyAnalyzerAsync(CreateTestCode(testSource));
         }
+
+        private static string CreateTestCode(string testSource)
+        {
+			Stream commonDef = typeof(SNet0001AnalyzerUnitTest).Assembly.GetManifestResourceStream("CommonDef.cs");
+			int commonLength = (int)commonDef.Length;
+			var buffer = ArrayPool<byte>.Shared.Rent(commonLength);
+            commonDef.Read(buffer, 0, commonLength);
+
+			return Encoding.UTF8.GetString(buffer) + testSource;
+		}
 
         //Diagnostic and CodeFix both triggered and checked for
         [TestMethod]
